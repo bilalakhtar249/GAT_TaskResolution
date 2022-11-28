@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,10 +11,9 @@ namespace GAT_TaskkResolution.Models
     {
         [Required]
         public int ID { get; set; }
-
         [Required]
+        [MaxLength(450)]
         public string Number { get; set; }
-
         [Required]
         public string FirstName { get; set; }
         public string MidName { get; set; }
@@ -22,6 +22,6 @@ namespace GAT_TaskkResolution.Models
         [Required]
         public DateTime BirthDate { get; set; }
 
-        IQueryable<Subject> Subjects { get; set; }
+        public ICollection<Subject> Subjects { get; set; }
     }
 }

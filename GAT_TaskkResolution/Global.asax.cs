@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Http;
+using GAT_TaskkResolution.App_Start;
 
 namespace GAT_TaskkResolution
 {
@@ -12,10 +14,12 @@ namespace GAT_TaskkResolution
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapper.Mapper.Initialize(c => c.AddProfile<MappingProfile>());
         }
     }
 }

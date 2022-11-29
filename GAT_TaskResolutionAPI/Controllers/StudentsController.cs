@@ -119,19 +119,19 @@ namespace GAT_TaskResolutionAPI.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(string Number)
+        public IHttpActionResult Delete(StudentDTO model)
         {
             try
             {
-                _log.LogInfo("Delete: " + Number);
+                _log.LogInfo("Delete: " + model.Number);
 
-                var dbObject = _db.Students.Where(x => x.Number == Number).Include(x => x.Subjects).FirstOrDefault();
+                var dbObject = _db.Students.Where(x => x.Number == model.Number).Include(x => x.Subjects).FirstOrDefault();
                 if (dbObject != null)
                 {
                     _db.Students.Remove(dbObject);
                     _db.SaveChanges();
 
-                    return Ok(Number);
+                    return Ok(model);
                 }
                 else
                 {

@@ -97,10 +97,10 @@ namespace GAT_TaskResolutionAPI.Controllers
             {
                 _log.LogInfo("Put: " + model.Number);
 
-                var dbObject = _db.Students.Where(x => x.Number == model.Number).FirstOrDefault();
-                if (dbObject != null)
+                var student = _db.Students.Where(x => x.Number == model.Number).Include(x => x.Subjects).FirstOrDefault();
+                if (student != null)
                 {
-                    DbEntityEntry<Student> stud = _db.Entry(dbObject);
+                    DbEntityEntry<Student> stud = _db.Entry(student);
                     stud.CurrentValues.SetValues(model);
                     _db.SaveChanges();
 
@@ -119,23 +119,19 @@ namespace GAT_TaskResolutionAPI.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(StudentDTO model)
+        public IHttpActionResult Delete(string Number)
         {
             try
             {
-                _log.LogInfo("Delete: " + model.Number);
+                _log.LogInfo("Delete: " + Number);
 
-                var dbObject = _db.Students.Where(x => x.Number == model.Number).Include(x => x.Subjects).FirstOrDefault();
+                var dbObject = _db.Students.Where(x => x.Number == Number).Include(x => x.Subjects).FirstOrDefault();
                 if (dbObject != null)
                 {
-                    foreach(var item in dbObject.Subjects)
-                    {
-                        dbObject.Subjects.Remove(item);
-                    }
                     _db.Students.Remove(dbObject);
                     _db.SaveChanges();
 
-                    return Ok(model);
+                    return Ok(Number);
                 }
                 else
                 {
@@ -147,6 +143,75 @@ namespace GAT_TaskResolutionAPI.Controllers
                 _log.LogError(ex.ToString());
                 return InternalServerError();
             }            
+        }
+
+        [Route("api/Students/{StudentNumber}/AddSubjects")]
+        [HttpPost]
+        public IHttpActionResult AddSubjects(string StudentNumber, ICollection<SubjectDTO> model)
+        {
+            try
+            {
+                _log.LogInfo("AddSubjects: " + model.Count());
+
+                var student = _db.Students.Where(x => x.Number == StudentNumber).Include(x => x.Subjects).FirstOrDefault();
+
+                if(student != null)
+                { 
+                    foreach(var item in model)
+                    {
+                        if(!student.Subjects.Any(x => x.Code == item.Code)) //Not already part of subject collection
+                        {
+                            var subject = _db.Subjects.FirstOrDefault(x => x.Code == item.Code);
+                            if (subject != null)
+                                student.Subjects.Add(subject);
+                        }
+                    }
+                    _db.SaveChanges();
+                    return Ok(model);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, "Student not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.ToString());
+                return InternalServerError();
+            }
+        }
+
+        [Route("api/Students/{StudentNumber}/DeleteSubjects")]
+        [HttpDelete]
+        public IHttpActionResult DeleteSubjects(string StudentNumber, ICollection<SubjectDTO> model)
+        {
+            try
+            {
+                _log.LogInfo("DeleteSubjects: " + model.Count());
+
+                var student = _db.Students.Where(x => x.Number == StudentNumber).Include(x => x.Subjects).FirstOrDefault();
+
+                if (student != null)
+                {
+                    foreach (var item in model)
+                    {
+                        var subject = student.Subjects.FirstOrDefault(x => x.Code == item.Code);
+                        if (subject != null)
+                            student.Subjects.Remove(subject);
+                    }
+                    _db.SaveChanges();
+                    return Ok(model);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, "Student not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.ToString());
+                return InternalServerError();
+            }
         }
 
     }

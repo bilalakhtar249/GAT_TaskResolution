@@ -238,6 +238,7 @@
     <Content Include="Scripts\client\app\app.component.js.map" />
     <Content Include="Scripts\client\app\app.component.spec.js.map" />
     <Content Include="Scripts\client\app\app.module.js.map" />
+    <Content Include="Scripts\client\main.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\client\3rdpartylicenses.txt" />
     <Content Include="Scripts\client\app\app-routing.module.js" />
@@ -247,6 +248,7 @@
     <Content Include="Scripts\client\favicon.ico" />
     <Content Include="Scripts\client\index.html" />
     <Content Include="Scripts\client\main.d5f92850fe13f14f.js" />
+    <Content Include="Scripts\client\main.js" />
     <Content Include="Scripts\client\polyfills.41fa01f533a9c2dc.js" />
     <Content Include="Scripts\client\runtime.5a6ea4814fed39ac.js" />
     <Content Include="Scripts\client\styles.ef46db3751d8e999.css" />

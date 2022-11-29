@@ -7,8 +7,6 @@ namespace GAT_TaskkResolution.DTO
 {
     public class SubjectDTO
     {
-        public int ID { get; set; }
-
         public string Name { get; set; }
 
         public string Code { get; set; }

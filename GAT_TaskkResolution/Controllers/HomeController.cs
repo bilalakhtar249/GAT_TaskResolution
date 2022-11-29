@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GAT_TaskkResolution.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,12 @@ namespace GAT_TaskkResolution.Controllers
 {
     public class HomeController : Controller
     {
+
+        public HomeController(TaskResolutionContext context)
+        {
+
+        }
+
         public ActionResult Index()
         {
             return View();

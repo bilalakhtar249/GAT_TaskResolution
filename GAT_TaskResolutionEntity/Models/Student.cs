@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GAT_TaskkResolution.Models
+namespace GAT_TaskResolutionEntity.Models
 {
     public class Student
     {

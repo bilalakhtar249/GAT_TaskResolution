@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using GAT_TaskkResolution.DTO;
-using GAT_TaskkResolution.Models;
-using GAT_TaskkResolution.Logging;
+using GAT_TaskResolutionEntity.DTO;
+using GAT_TaskResolutionEntity.Models;
+using GAT_TaskResolutionUtility.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

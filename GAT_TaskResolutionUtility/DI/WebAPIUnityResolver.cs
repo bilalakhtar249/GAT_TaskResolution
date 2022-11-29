@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.Http.Dependencies;
 using Unity;
 
-namespace GAT_TaskResolutionAPI.DI
+namespace GAT_TaskResolutionUtility.DI
 {
-    public class UnityResolver : IDependencyResolver
+    public class WebAPIUnityResolver : IDependencyResolver
     {
         protected IUnityContainer container;
 
-        public UnityResolver(IUnityContainer container)
+        public WebAPIUnityResolver(IUnityContainer container)
         {
             if (container == null)
             {
@@ -23,7 +23,7 @@ namespace GAT_TaskResolutionAPI.DI
         public IDependencyScope BeginScope()
         {
             var child = container.CreateChildContainer();
-            return new UnityResolver(child);
+            return new WebAPIUnityResolver(child);
         }
 
         public void Dispose()

@@ -1,4 +1,4 @@
-﻿namespace GAT_TaskkResolution.Migrations
+﻿namespace GAT_TaskResolutionEntity.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

@@ -1,4 +1,4 @@
-﻿using GAT_TaskkResolution.Models;
+﻿using GAT_TaskResolutionEntity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

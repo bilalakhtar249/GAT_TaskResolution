@@ -1,12 +1,11 @@
-using GAT_TaskkResolution.Logging;
-using GAT_TaskkResolution.Models;
+using GAT_TaskResolutionUtility.Logging;
+using GAT_TaskResolutionEntity.Models;
 using System.Web.Http;
-using System.Web.Mvc;
 using Unity;
 using Unity.Lifetime;
 using Unity.WebApi;
 
-namespace GAT_TaskResolutionAPI
+namespace GAT_TaskResolutionUtility.DI
 {
     public static class UnityConfig
     {

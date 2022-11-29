@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GAT_TaskkResolution.Logging
+namespace GAT_TaskResolutionUtility.Logging
 {
     public class Logger : ILogger
     {

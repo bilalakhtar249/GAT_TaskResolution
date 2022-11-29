@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using GAT_TaskkResolution.DTO;
-using GAT_TaskkResolution.Models;
+using GAT_TaskResolutionEntity.DTO;
+using GAT_TaskResolutionEntity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GAT_TaskResolutionAPI.App_Start
+namespace GAT_TaskResolutionUtility.Logging
 {
     public class MappingProfile : Profile
     {

@@ -1,4 +1,5 @@
-﻿using GAT_TaskResolutionAPI.App_Start;
+﻿using GAT_TaskResolutionUtility.DI;
+using GAT_TaskResolutionUtility.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Web.Routing;
 
 namespace GAT_TaskResolutionAPI
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {

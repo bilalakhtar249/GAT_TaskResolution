@@ -148,25 +148,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DI\Bootstrapper.cs" />
-    <Compile Include="DTO\StudentDTO.cs" />
-    <Compile Include="DTO\SubjectDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\202211281511232_init.cs" />
-    <Compile Include="Migrations\202211281511232_init.designer.cs">
-      <DependentUpon>202211281511232_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\TaskResolutionContext.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +207,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202211281511232_init.resx">
-      <DependentUpon>202211281511232_init.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\GAT_TaskResolutionEntity\GAT_TaskResolutionEntity.csproj">
+      <Project>{98510b28-3da1-416d-8efa-5d3784fe1025}</Project>
+      <Name>GAT_TaskResolutionEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

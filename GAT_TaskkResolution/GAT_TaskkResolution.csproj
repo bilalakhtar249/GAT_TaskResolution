@@ -158,12 +158,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\.gitignore" />
-    <Content Include="Client\src\app\app.component.css" />
-    <Content Include="Client\src\app\app.component.html" />
-    <Content Include="Client\src\favicon.ico" />
-    <Content Include="Client\src\index.html" />
-    <Content Include="Client\src\styles.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -172,86 +166,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\utility.js" />
+    <Content Include="Scripts\taskResolutionApp.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Client\.editorconfig" />
-    <Content Include="Client\.git\COMMIT_EDITMSG" />
-    <Content Include="Client\.git\config" />
-    <Content Include="Client\.git\description" />
-    <Content Include="Client\.git\HEAD" />
-    <Content Include="Client\.git\hooks\applypatch-msg.sample" />
-    <Content Include="Client\.git\hooks\commit-msg.sample" />
-    <Content Include="Client\.git\hooks\fsmonitor-watchman.sample" />
-    <Content Include="Client\.git\hooks\post-update.sample" />
-    <Content Include="Client\.git\hooks\pre-applypatch.sample" />
-    <Content Include="Client\.git\hooks\pre-commit.sample" />
-    <Content Include="Client\.git\hooks\pre-merge-commit.sample" />
-    <Content Include="Client\.git\hooks\pre-push.sample" />
-    <Content Include="Client\.git\hooks\pre-rebase.sample" />
-    <Content Include="Client\.git\hooks\pre-receive.sample" />
-    <Content Include="Client\.git\hooks\prepare-commit-msg.sample" />
-    <Content Include="Client\.git\hooks\push-to-checkout.sample" />
-    <Content Include="Client\.git\hooks\update.sample" />
-    <Content Include="Client\.git\index" />
-    <Content Include="Client\.git\info\exclude" />
-    <Content Include="Client\.git\logs\HEAD" />
-    <Content Include="Client\.git\logs\refs\heads\master" />
-    <Content Include="Client\.git\objects\02\972627f8df364102ce4ede71c8bd5f3660e1d8" />
-    <Content Include="Client\.git\objects\07\11527ef9d5c117396e6c03290a76658e6384ed" />
-    <Content Include="Client\.git\objects\20\42857ca09013ca0441cffdf086339c1177cc41" />
-    <Content Include="Client\.git\objects\2a\0fbf18f85102cf57069c7da940f6a0d4de6101" />
-    <Content Include="Client\.git\objects\33\bed826f3c5fb9fea3a20335685c0e3a00d749d" />
-    <Content Include="Client\.git\objects\37\4cc9d294aabd995598a0a2ad4eb99cf0ea3dfd" />
-    <Content Include="Client\.git\objects\4f\f6e2c2812c5dc8f991b31fae51ecbe18e01023" />
-    <Content Include="Client\.git\objects\57\2a53f73bb332280d19f2f7cb0bcac8b32faab5" />
-    <Content Include="Client\.git\objects\58\4be3175e00b65591b359451b38ae0ec11c3ac5" />
-    <Content Include="Client\.git\objects\59\d9a3a3e73ffc640517ef488f6f89d6270195d1" />
-    <Content Include="Client\.git\objects\74\0e35a0c04be4a5fe627833b54fee2ad99dc2a3" />
-    <Content Include="Client\.git\objects\77\b374577de83b86d846eadda2dd17532d7dabaa" />
-    <Content Include="Client\.git\objects\86\ba52a701168c4627cfd3c44c6dc7c1b1bcfb3d" />
-    <Content Include="Client\.git\objects\90\d4ee0072ce3fc41812f8af910219f9eea3c3de" />
-    <Content Include="Client\.git\objects\97\d603901ca4cf8e470d87d369f2013503299ba6" />
-    <Content Include="Client\.git\objects\99\7406ad22c29aae95893fb3d666c30258a09537" />
-    <Content Include="Client\.git\objects\a2\98b5bd8796ac377fe9ed64caa249e24c7ec3b6" />
-    <Content Include="Client\.git\objects\b1\c6c96a9de8f091f39b3b8feb7e29cfcfb1ed81" />
-    <Content Include="Client\.git\objects\bc\04da8951263608fbdbbf285b614f84d58ae9ed" />
-    <Content Include="Client\.git\objects\bd\40905246475f9f9163e919f3b78f0273a37d35" />
-    <Content Include="Client\.git\objects\be\7e9da76f7b2d7c73c119589e3b77008e66f5a8" />
-    <Content Include="Client\.git\objects\c5\8dc05cbc6d094a9ed44203c6b69b74e5294452" />
-    <Content Include="Client\.git\objects\d5\64d0bc3dd917926892c55e3706cc116d5b165e" />
-    <Content Include="Client\.git\objects\db\aa1dccac81ccf517e60d5c515e73b976dda99b" />
-    <Content Include="Client\.git\objects\e6\9de29bb2d1d6434b8b29ae775ad8c2e48c5391" />
-    <Content Include="Client\.git\objects\ed\966d43afa55368b184ea967e1c1ef4df0b4caa" />
-    <Content Include="Client\.git\objects\ee\205c1bd7916ef371fea4cd691ba038102a4f1a" />
-    <Content Include="Client\.git\refs\heads\master" />
-    <Content Include="Client\.vscode\extensions.json" />
-    <Content Include="Client\.vscode\launch.json" />
-    <Content Include="Client\.vscode\tasks.json" />
-    <Content Include="Client\angular.json" />
-    <Content Include="Client\package.json" />
-    <Content Include="Client\README.md" />
-    <Content Include="Client\src\assets\.gitkeep" />
-    <Content Include="Client\tsconfig.app.json" />
-    <Content Include="Client\tsconfig.json" />
-    <Content Include="Client\tsconfig.spec.json" />
-    <Content Include="Scripts\client\app\app-routing.module.js.map" />
-    <Content Include="Scripts\client\app\app.component.js.map" />
-    <Content Include="Scripts\client\app\app.component.spec.js.map" />
-    <Content Include="Scripts\client\app\app.module.js.map" />
-    <Content Include="Scripts\client\main.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\client\3rdpartylicenses.txt" />
-    <Content Include="Scripts\client\app\app-routing.module.js" />
-    <Content Include="Scripts\client\app\app.component.js" />
-    <Content Include="Scripts\client\app\app.component.spec.js" />
-    <Content Include="Scripts\client\app\app.module.js" />
-    <Content Include="Scripts\client\favicon.ico" />
-    <Content Include="Scripts\client\index.html" />
-    <Content Include="Scripts\client\main.d5f92850fe13f14f.js" />
-    <Content Include="Scripts\client\main.js" />
-    <Content Include="Scripts\client\polyfills.41fa01f533a9c2dc.js" />
-    <Content Include="Scripts\client\runtime.5a6ea4814fed39ac.js" />
-    <Content Include="Scripts\client\styles.ef46db3751d8e999.css" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -275,11 +198,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\.git\objects\info\" />
-    <Folder Include="Client\.git\objects\pack\" />
-    <Folder Include="Client\.git\refs\tags\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -298,13 +217,6 @@
       <Project>{98510b28-3da1-416d-8efa-5d3784fe1025}</Project>
       <Name>GAT_TaskResolutionEntity</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Client\src\app\app-routing.module.ts" />
-    <TypeScriptCompile Include="Client\src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="Client\src\app\app.component.ts" />
-    <TypeScriptCompile Include="Client\src\app\app.module.ts" />
-    <TypeScriptCompile Include="Client\src\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

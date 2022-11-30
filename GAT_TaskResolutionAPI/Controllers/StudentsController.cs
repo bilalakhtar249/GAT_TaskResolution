@@ -9,9 +9,11 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace GAT_TaskResolutionAPI.Controllers
 {
+    //[EnableCors(origins: "http://localhost:50485/", headers: "*", methods: "*")]
     [Route("api/Students")]
     public class StudentsController : ApiController
     {
@@ -51,7 +53,7 @@ namespace GAT_TaskResolutionAPI.Controllers
             {
                 _log.LogInfo("Get All");
 
-                var data = _db.Students.ToList();
+                var data = _db.Students.Include(x => x.Subjects).ToList();
                 
                 return Ok(Mapper.Map<IEnumerable<StudentDTO>>(data));
             }
@@ -119,19 +121,19 @@ namespace GAT_TaskResolutionAPI.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(StudentDTO model)
+        public IHttpActionResult Delete(string Number)
         {
             try
             {
-                _log.LogInfo("Delete: " + model.Number);
+                _log.LogInfo("Delete: " + Number);
 
-                var dbObject = _db.Students.Where(x => x.Number == model.Number).Include(x => x.Subjects).FirstOrDefault();
+                var dbObject = _db.Students.Where(x => x.Number == Number).Include(x => x.Subjects).FirstOrDefault();
                 if (dbObject != null)
                 {
                     _db.Students.Remove(dbObject);
                     _db.SaveChanges();
 
-                    return Ok(model);
+                    return Ok(Mapper.Map<StudentDTO>(dbObject));
                 }
                 else
                 {
@@ -145,29 +147,33 @@ namespace GAT_TaskResolutionAPI.Controllers
             }            
         }
 
-        [Route("api/Students/{StudentNumber}/AddSubjects")]
+        [Route("api/Students/{StudentNumber}/AddSubject/{SubjectCode}")]
         [HttpPost]
-        public IHttpActionResult AddSubjects(string StudentNumber, ICollection<SubjectDTO> model)
+        public IHttpActionResult AddSubjects(string StudentNumber, string SubjectCode)
         {
             try
             {
-                _log.LogInfo("AddSubjects: " + model.Count());
+                _log.LogInfo("AddSubject: " + SubjectCode);
 
                 var student = _db.Students.Where(x => x.Number == StudentNumber).Include(x => x.Subjects).FirstOrDefault();
 
                 if(student != null)
                 { 
-                    foreach(var item in model)
+                    if(!student.Subjects.Any(x => x.Code == SubjectCode)) //Not already part of subject collection
                     {
-                        if(!student.Subjects.Any(x => x.Code == item.Code)) //Not already part of subject collection
-                        {
-                            var subject = _db.Subjects.FirstOrDefault(x => x.Code == item.Code);
-                            if (subject != null)
-                                student.Subjects.Add(subject);
-                        }
+                        var subject = _db.Subjects.FirstOrDefault(x => x.Code == SubjectCode);
+                        if (subject != null)
+                            student.Subjects.Add(subject);
+                        else
+                            return Content(HttpStatusCode.NotFound, "Subject not found");
                     }
+                    else
+                    {
+                        return Content(HttpStatusCode.Conflict, "A subject with same code already exists");
+                    }
+                    
                     _db.SaveChanges();
-                    return Ok(model);
+                    return Ok(SubjectCode);
                 }
                 else
                 {
@@ -181,26 +187,27 @@ namespace GAT_TaskResolutionAPI.Controllers
             }
         }
 
-        [Route("api/Students/{StudentNumber}/DeleteSubjects")]
+        [Route("api/Students/{StudentNumber}/DeleteSubject/{SubjectCode}")]
         [HttpDelete]
-        public IHttpActionResult DeleteSubjects(string StudentNumber, ICollection<SubjectDTO> model)
+        public IHttpActionResult DeleteSubject(string StudentNumber, string SubjectCode)
         {
             try
             {
-                _log.LogInfo("DeleteSubjects: " + model.Count());
+                _log.LogInfo("DeleteSubject: " + SubjectCode);
 
                 var student = _db.Students.Where(x => x.Number == StudentNumber).Include(x => x.Subjects).FirstOrDefault();
 
                 if (student != null)
                 {
-                    foreach (var item in model)
-                    {
-                        var subject = student.Subjects.FirstOrDefault(x => x.Code == item.Code);
-                        if (subject != null)
-                            student.Subjects.Remove(subject);
-                    }
+                    var subject = student.Subjects.FirstOrDefault(x => x.Code == SubjectCode);
+
+                    if (subject != null && student.Subjects.Any(x => x.Code == subject.Code))
+                        student.Subjects.Remove(subject);
+                    else
+                        return Content(HttpStatusCode.NotFound, "Subject not found");
+
                     _db.SaveChanges();
-                    return Ok(model);
+                    return Ok(SubjectCode);
                 }
                 else
                 {

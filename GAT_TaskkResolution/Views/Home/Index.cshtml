@@ -7,17 +7,160 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>GATTaskResolutionClient</title>
+    <title>Task Resolution</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="../Scripts/Client/styles.ef46db3751d8e999.css">
+    @Styles.Render("~/Content/css")
 </head>
-<body>
-    <app-root></app-root>
-    <script src="../Scripts/Client/runtime.5a6ea4814fed39ac.js" type="module"></script>
-    <script src="../Scripts/Client/polyfills.41fa01f533a9c2dc.js" type="module"></script>
-    <script src="../Scripts/Client/main.d5f92850fe13f14f.js" type="module"></script>
+<body ng-app="taskRes">
+    <div ng-controller="parent" ng-init="init()" class="container">
+        
+        <div id="alert" class="alert alert-dismissible hidden" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="alertText"></span>
+        </div>
+
+        <h2 class="table-title">Student List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>Birth Date</th>
+                    <th>Subjects</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="std in students">
+                    <td>{{std.Number}}</td>
+                    <td>{{std | studentFullName}}</td>
+                    <td>{{std.BirthDate | date : 'dd-MMM-yyyy'}}</td>
+                    <td>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="sub in std.Subjects">
+                                <span>{{sub.Code + ' - ' + sub.Name}}</span>
+                                <span class="list-group-item-remove" title="Remove Subject" ng-click="DeleteSubject(std.Number, sub.Code)">x</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-warning">Actions</button>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" value="Update" ng-click="UpdateStudent(std)">Update Student</a></li>
+                                    <li><a href="#" value="Delete" ng-click="DeleteStudent(std)">Delete Student</a></li>
+                                    <li><a href="#" value="Update" ng-click="AddSubject(std)">Add Subject</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form" role="form">
+            <div class="row">
+                <h2 id="spn">New Student</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Student Number:</label>
+                        <div>
+                            <input type="text" class="form-control" id="inputNumber" placeholder="Student Number" ng-model="student.Number">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">First Name:</label>
+                        <div>
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model="student.FirstName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Middle Name:</label>
+                        <div>
+                            <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name" ng-model="student.MidName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Last Name:</label>
+                        <div>
+                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="student.LastName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Date of Birth:</label>
+                        <div>
+                            <input type="date" class="form-control" id="inputDOB" placeholder="Date of Birth" ng-model="student.BirthDate" format-date>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label"></label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="button" id="btnSave" class="form-control btn-success" value="Submit" ng-click="InsertStudent()" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" id="btnCancel" class="form-control btn-default" value="Reset" ng-click="ResetForm()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subjectModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="mySmallModalLabel">Add Subject</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" readonly="readonly" value="{{student.Number}} - {{student | studentFullName}}">
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control" ng-model="subjectCode">
+                                    <option ng-repeat="sub in subjects" value="{{sub.Code}}">{{sub.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-right">
+                                    <input type="submit" class="btn btn-success" value="Save" ng-click="InsertSubject(student.Number, subjectCode)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 
 </body>
+
 </html>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/angularjs")
+@Scripts.Render("~/bundles/utility")

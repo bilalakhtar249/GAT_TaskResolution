@@ -40,6 +40,12 @@ taskRes.controller("parent", function ($scope, $http, $filter) {
     };
 
     $scope.InsertStudent = function () {
+
+        if ($.isEmptyObject($scope.student) || !$scope.studentForm.$valid) {
+            $scope.Alert('warning', 'Please fill in the required field');
+            return;
+        }
+
         var Action = document.getElementById("btnSave").getAttribute("value");
         if (Action == "Submit") {
             $http({
@@ -100,6 +106,7 @@ taskRes.controller("parent", function ($scope, $http, $filter) {
         $("#spn").html("New Student");
         $('#inputNumber').prop('readonly', false);
         $('#subjectModal').modal('hide');
+        $scope.studentForm.$setPristine()
     };
 
     $scope.DeleteSubject = function (studentNumber, subjectCode) {
@@ -138,30 +145,39 @@ taskRes.controller("parent", function ($scope, $http, $filter) {
     $scope.Alert = function (type, message) {
         if (type === "success") {
             $('#alert .alertText').text(message);
-            $("#alert").removeClass("alert-danger").addClass("alert-success");
+            $("#alert").removeClass("alert-danger").removeClass('alert-warning').addClass("alert-success");
+        }
+        else if (type === "warning") {
+            $('#alert .alertText').text(message);
+            $("#alert").removeClass("alert-danger").removeClass('alert-success').addClass("alert-warning");
         }
         else if (type == "error") {
             if (message.data.length > 0)
                 $('#alert .alertText').text(message.data);
             else
                 $('#alert .alertText').text(message.statusText);
-            $("#alert").removeClass("alert-success").addClass("alert-danger");
+            $("#alert").removeClass("alert-success").removeClass('alert-success').addClass("alert-danger");
         }        
         $(".alert").removeClass('hidden');
         $(".alert").alert()
     }
+
+    $scope.$watch('studentForm', function () {
+    });
+
 });
 
 taskRes.directive("formatDate", function () {
-        return {
-            require: 'ngModel',
-            link: function (scope, elem, attr, modelDate) {
-                modelDate.$formatters.push(function (modelValue) {
-                    return new Date(modelValue);
-                })
-            }
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attr, modelDate) {
+            modelDate.$formatters.push(function (modelValue) {
+                return new Date(modelValue);
+            })
         }
-})
+    }
+});
+
 
 taskRes.filter('ifEmpty', function () {
     return function (input, defaultValue) {
@@ -178,8 +194,8 @@ taskRes.filter('studentFullName', function () {
         var fullName = student.FirstName + ' ';
         if (student.MidName !== null && student.MidName !== '')
             fullName += student.MidName + ' ';
-        fullName += student.LastName;
+        if (student.LastName !== null && student.LastName !== '')
+            fullName += student.LastName;
         return fullName;
         };
 });
-

@@ -29,6 +29,9 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpGet]
         public IHttpActionResult Get(string Number)
         {
+            if (string.IsNullOrEmpty(Number))
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+
             try
             {
 
@@ -67,6 +70,12 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpPost]
         public IHttpActionResult Post(StudentDTO model)
         {
+            if (model == null)
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+            
+            if (!ModelState.IsValid)
+                return Content(HttpStatusCode.BadRequest, "invalid parameter values");
+
             try
             {
                 _log.LogInfo("Post: " + model.Number);
@@ -95,6 +104,12 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpPut]
         public IHttpActionResult Put(StudentDTO model)
         {
+            if (model == null)
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+
+            if (!ModelState.IsValid)
+                return Content(HttpStatusCode.BadRequest, "invalid parameter values");
+
             try
             {
                 _log.LogInfo("Put: " + model.Number);
@@ -123,6 +138,9 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(string Number)
         {
+            if (string.IsNullOrEmpty(Number))
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+
             try
             {
                 _log.LogInfo("Delete: " + Number);
@@ -151,6 +169,9 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpPost]
         public IHttpActionResult AddSubjects(string StudentNumber, string SubjectCode)
         {
+            if (string.IsNullOrEmpty(StudentNumber) || string.IsNullOrEmpty(SubjectCode))
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+
             try
             {
                 _log.LogInfo("AddSubject: " + SubjectCode);
@@ -191,6 +212,9 @@ namespace GAT_TaskResolutionAPI.Controllers
         [HttpDelete]
         public IHttpActionResult DeleteSubject(string StudentNumber, string SubjectCode)
         {
+            if (string.IsNullOrEmpty(StudentNumber) || string.IsNullOrEmpty(SubjectCode))
+                return Content(HttpStatusCode.BadRequest, "empty or null parameter");
+
             try
             {
                 _log.LogInfo("DeleteSubject: " + SubjectCode);

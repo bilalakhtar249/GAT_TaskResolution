@@ -43,3 +43,36 @@ span.list-group-item-remove:hover {
     background: #aaa;
     color: #777;
 }
+
+input.ng-invalid.ng-touched {
+    border-color: pink;
+}
+
+input.ng-valid.ng-touched {
+    border-color: lightgreen;
+}
+
+
+
+
+
+#loaderDiv {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1100;
+    background-color: white;
+    opacity: .6;
+}
+
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -128px;
+    margin-top: -128px;
+    display: block;
+    width: 256px;
+}

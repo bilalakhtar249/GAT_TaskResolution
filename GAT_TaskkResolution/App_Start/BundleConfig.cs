@@ -13,7 +13,8 @@ namespace GAT_TaskkResolution
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                         "~/Scripts/angular.min.js",
-                        "~/Scripts/taskResolutionApp.js"));
+                        "~/Scripts/taskResolutionApp.js",
+                        "~/Scripts/loader.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

@@ -162,10 +162,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Img\ajax_loader.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\loader.js" />
     <Content Include="Scripts\utility.js" />
     <Content Include="Scripts\taskResolutionApp.js" />
     <Content Include="Scripts\angular-mocks.js" />

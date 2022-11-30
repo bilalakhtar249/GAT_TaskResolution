@@ -14,7 +14,7 @@
 </head>
 <body ng-app="taskRes">
     <div ng-controller="parent" ng-init="init()" class="container">
-        
+
         <div id="alert" class="alert alert-dismissible hidden" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <span class="alertText"></span>
@@ -66,59 +66,63 @@
             <div class="row">
                 <h2 id="spn">New Student</h2>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">Student Number:</label>
-                        <div>
-                            <input type="text" class="form-control" id="inputNumber" placeholder="Student Number" ng-model="student.Number">
+
+            <form name="studentForm">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Student Number:</label>
+                            <div>
+                                <input type="text" class="form-control" id="inputNumber" required placeholder="Student Number" ng-model="student.Number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">First Name:</label>
+                            <div>
+                                <input type="text" class="form-control" id="inputFirstName" required placeholder="First Name" ng-model="student.FirstName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Middle Name:</label>
+                            <div>
+                                <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name" ng-model="student.MidName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Last Name:</label>
+                            <div>
+                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="student.LastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Date of Birth:</label>
+                            <div>
+                                <input type="date" class="form-control" id="inputDOB" required placeholder="Date of Birth" ng-model="student.BirthDate" format-date>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label"></label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="button" id="btnSave" class="form-control btn-success" value="Submit" ng-click="InsertStudent()" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="button" id="btnCancel" class="form-control btn-default" value="Reset" ng-click="ResetForm()" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">First Name:</label>
-                        <div>
-                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model="student.FirstName">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">Middle Name:</label>
-                        <div>
-                            <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name" ng-model="student.MidName">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">Last Name:</label>
-                        <div>
-                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="student.LastName">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">Date of Birth:</label>
-                        <div>
-                            <input type="date" class="form-control" id="inputDOB" placeholder="Date of Birth" ng-model="student.BirthDate" format-date>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <label class="control-label"></label>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <input type="button" id="btnSave" class="form-control btn-success" value="Submit" ng-click="InsertStudent()" />
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="button" id="btnCancel" class="form-control btn-default" value="Reset" ng-click="ResetForm()" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
+
         </div>
 
         <div id="subjectModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
@@ -152,6 +156,11 @@
                 </div>
             </div>
         </div>
+
+        <div id="loaderDiv" loader>
+            <img src="~/Content/Img/ajax_loader.gif" class="ajax-loader" />
+        </div>
+
     </div>
 
     

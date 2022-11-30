@@ -40,5 +40,3 @@ Modify Connection String in Web API
 Do EF migrations
 
 Run the project
-
-## License
